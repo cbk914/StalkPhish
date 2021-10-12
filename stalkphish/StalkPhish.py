@@ -29,7 +29,7 @@ from tools.sqlite import SqliteCmd
 from tools.addurl import AddUniqueURL
 from tools.logging import Logger
 from tools.confparser import ConfParser
-VERSION = "0.9.8-2"
+VERSION = "0.9.8-3"
 
 
 # Graceful banner  :)
@@ -94,7 +94,7 @@ def args_parse():
             else:
                 print("  ERROR - Can't find configuration file.")
                 usage()
-        elif confound is "NO":
+        elif confound == "NO":
             print("  Error - Configuration file is mandatory.")
             usage()
 
@@ -132,9 +132,10 @@ def LaunchModules(SearchString):
     if ModuleUrlscan is True:
         from modules.urlscan import UrlscanOSINT, UrlscanExtractor
         ConfURLSCAN_url = CONF.URLSCAN_url
+        ConfURLSCAN_apikey = CONF.URLSCAN_apikey
 
         for SearchString in SearchString_list:
-            UrlscanOSINT(ConfURLSCAN_url, PROXY, SearchString, LOG)
+            UrlscanOSINT(ConfURLSCAN_apikey, ConfURLSCAN_url, PROXY, SearchString, LOG)
             UrlscanExtractor(LOG, SQL, TABLEname, PROXY, UAFILE)
     else:
         pass
@@ -462,7 +463,7 @@ def main():
             pass
 
         # Only add URL into Database
-        if UniqueURL is "YES":
+        if UniqueURL == "YES":
             LOG.info("Add URL into database: {}".format(URLadd))
             AddUniqueURL(URLadd, LOG, SQL, TABLEname, PROXY, UAFILE)
             sys.stdout.flush()
@@ -471,13 +472,13 @@ def main():
             pass
 
         # Modules launch
-        if OSINTsources is "YES":
+        if OSINTsources == "YES":
             LaunchModules(SearchString)
         else:
             pass
 
         # Phishing Kit download launch if activated
-        if DLPhishingKit is "YES":
+        if DLPhishingKit == "YES":
             LOG.info("Starting trying to download phishing kits sources...")
             TryDLPK(TABLEname, InvTABLEname, DLDir, SQL, PROXY, LOG, UAFILE)
         else:

@@ -17,6 +17,9 @@
 - add just one url at a time into database
 - store AS number in database
 
+## Blog Posts
+You can find some blog posts relatives to phishing and phishing kits on [https://stalkphish.com](https://stalkphish.com/)
+
 ## OSINT modules
 * [urlscan.io](https://urlscan.io/about-api/) search API
 * [urlquery.net](https://urlquery.net/search) search web crawler
@@ -32,6 +35,9 @@
 * requests
 * PySocks
 * lxml
+
+## Join us
+You can join us on Keybase: [https://keybase.io/team/stalkphish](https://keybase.io/team/stalkphish) channel 'stalkphish'!
 
 ## Upgrade StalkPhish from <0.9.6
 Database schema changed (one more time :) for adding the ASnumber, a page hash, and a new column which contains e-mails extracted from Phishing kit's zip, you can modify your existing database like this:
